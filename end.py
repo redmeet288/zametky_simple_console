@@ -3,7 +3,7 @@ import json
 print("Добро пожаловать в Заметки");
 list_zam = {};
 
-if os.path.exists("notes.json"):
+if os.path.exists("notes.json"): # выгрузка
     try:
         with open("notes.json", "r", encoding="utf-8") as f:
             list_zam = json.load(f)
@@ -11,7 +11,7 @@ if os.path.exists("notes.json"):
     except:
         print("Ошибка загрузки")
 
-def save_notes():
+def save_notes(): # save
     try:
         with open("notes.json", "w", encoding="utf-8") as f:
             json.dump(list_zam, f, ensure_ascii=False, indent=2)
@@ -19,8 +19,7 @@ def save_notes():
         print("Ошибка сохранения")
 
 
-# выгрузка из файла
-def AddZam(list_zam):
+def AddZam(list_zam): # добавление
     print("Введите заголовок");
     zag = input("--- ");
     print("Введите описание");
@@ -29,18 +28,18 @@ def AddZam(list_zam):
     save_notes()
 
 
-def CheckZam(list_zam, cca):
+def CheckZam(list_zam, cca): # просмотр заметки
     print("=" * 20);
     print(list_zam[cca]);
     print("=" * 20);
 
 
-def DeleteZam(list_zam, cca):
+def DeleteZam(list_zam, cca): # удаление
     del list_zam[cca];
     save_notes()
 
 
-def EditZam(list_zam, cca):
+def EditZam(list_zam, cca): # редакт заметки
     if cca in list_zam:
         current_text = list_zam[cca];
         print(f"Текущая заметка: {current_text}");
@@ -58,7 +57,7 @@ def EditZam(list_zam, cca):
         print("Заметки нет");
 
 
-while(True):
+while(True): # отсновной поток
     print("Выберите из списка");
     print("0.Добавить заметку");
     for i, index in enumerate(list_zam.keys()):
